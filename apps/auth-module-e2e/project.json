@@ -1,0 +1,29 @@
+{
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@angular-devkit/build-angular:protractor",
+      "options": {
+        "protractorConfig": "apps/auth-module-e2e/protractor.conf.js"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "auth-module:serve:production"
+        },
+        "development": {
+          "devServerTarget": "auth-module:serve:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/auth-module-e2e/**/*.ts"]
+      }
+    }
+  },
+  "implicitDependencies": ["auth-module"],
+  "tags": []
+}

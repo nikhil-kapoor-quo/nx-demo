@@ -1,0 +1,123 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/auth-module/src",
+  "prefix": "mf-app",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/auth-module",
+        "index": "apps/auth-module/src/index.html",
+        "main": "apps/auth-module/src/main.ts",
+        "polyfills": "apps/auth-module/src/polyfills.ts",
+        "tsConfig": "apps/auth-module/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/auth-module/src/favicon.ico",
+          "apps/auth-module/src/assets"
+        ],
+        "styles": ["apps/auth-module/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/auth-module/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/auth-module/src/environments/environment.ts",
+              "with": "apps/auth-module/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/auth-module/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "auth-module:build:production"
+        },
+        "development": {
+          "browserTarget": "auth-module:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "auth-module:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/auth-module/**/*.ts",
+          "apps/auth-module/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/auth-module/src/test.ts",
+        "tsConfig": "apps/auth-module/tsconfig.spec.json",
+        "karmaConfig": "apps/auth-module/karma.conf.js",
+        "polyfills": "apps/auth-module/src/polyfills.ts",
+        "styles": [],
+        "scripts": [],
+        "assets": []
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "auth-module:build",
+        "port": 4201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "auth-module:build:development"
+        },
+        "production": {
+          "buildTarget": "auth-module:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

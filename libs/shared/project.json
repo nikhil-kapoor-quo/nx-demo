@@ -1,0 +1,22 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/src",
+  "prefix": "mf-app",
+  "targets": {
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/shared/src/test.ts",
+        "tsConfig": "libs/shared/tsconfig.spec.json",
+        "karmaConfig": "libs/shared/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/shared/**/*.ts", "libs/shared/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
